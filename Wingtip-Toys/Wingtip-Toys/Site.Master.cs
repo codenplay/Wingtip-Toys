@@ -7,6 +7,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq;
+using Wingtip_Toys.Logic;
 using Wingtip_Toys.Models;
 
 namespace Wingtip_Toys
@@ -72,7 +73,14 @@ namespace Wingtip_Toys
         {
 
         }
-
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
+            {
+                string cartStr = string.Format("Cart ({0})", usersShoppingCart.GetCount());
+                cartCount.InnerText = cartStr;
+            }
+        }
         public IQueryable<Category> GetCategories()
         {
             var _db = new Wingtip_Toys.Models.ProductContext();

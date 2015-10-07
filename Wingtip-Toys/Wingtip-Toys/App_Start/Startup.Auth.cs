@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Google;
 using Owin;
 
 namespace Wingtip_Toys
@@ -34,6 +35,11 @@ namespace Wingtip_Toys
             //   appSecret: "");
 
             //app.UseGoogleAuthentication();
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "656967514267-07f10656mem5t1r6la2qgc2e0ss0ct8s.apps.googleusercontent.com",
+                ClientSecret = "GL6TDefOEWbk4alhL1XXnUcG"
+            });
         }
     }
 }
